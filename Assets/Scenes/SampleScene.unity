@@ -970,7 +970,7 @@ MonoBehaviour:
   playerTransform: {fileID: 623359266}
   maxSpeed: 100
   maxAcceleration: 200
-  activeBehavior: 2
+  activeBehavior: 0
   slowRadius: 50
   targetRadius: 5
   timeToTarget: 0.1
