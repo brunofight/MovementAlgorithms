@@ -6,13 +6,13 @@ public class KinematicFlee : KinematicSteering
     {
     }
 
-    public override KinematicSteeringOutput getSteering()
+    public override SteeringOutput GetSteering()
     {
-        KinematicSteeringOutput result = new KinematicSteeringOutput();
+        SteeringOutput result = new SteeringOutput();
 
-        result.velocity = base.character.position - base.target.position;
-        result.velocity.Normalize();
-        result.velocity *= base.maxSpeed; 
+        result.linear = base.character.position - base.target.position;
+        result.linear.Normalize();
+        result.linear *= base.maxSpeed; 
 
         return result;
     }

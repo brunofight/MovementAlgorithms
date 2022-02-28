@@ -12,30 +12,30 @@ public class KinematicArrive : KinematicSteering
     {
     }
 
-    public override KinematicSteeringOutput getSteering()
+    public override SteeringOutput GetSteering()
     {
-        KinematicSteeringOutput result = new KinematicSteeringOutput();
+        SteeringOutput result = new SteeringOutput();
 
-        result.velocity = target.position - character.position;
+        result.linear = target.position - character.position;
 
-        if (result.velocity.magnitude < radius) 
+        if (result.linear.magnitude < radius) 
         {
-            result.velocity = Vector3.zero;
+            result.linear = Vector3.zero;
             return result;
         }
             
         // simulating a deceleration the closer the AI gets to the target
         // e.g. AI is 4 units away from target it would optimally move 16 units/s to reach the target.
-        result.velocity /= timeToTarget;
+        result.linear /= timeToTarget;
 
-        if (result.velocity.magnitude > maxSpeed) 
+        if (result.linear.magnitude > maxSpeed) 
         {
-            result.velocity.Normalize();
-            result.velocity *= maxSpeed;
+            result.linear.Normalize();
+            result.linear *= maxSpeed;
         }
 
-        result.rotation = newOrientation(character.rotation.y,result.velocity);
-
+        result.angular = Quaternion.LookRotation(result.linear).eulerAngles.y;
+       
         return result;
     }
 }

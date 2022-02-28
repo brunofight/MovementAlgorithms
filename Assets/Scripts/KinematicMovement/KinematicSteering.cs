@@ -10,7 +10,7 @@ public abstract class KinematicSteering
     {
         this.character = _character;
     }
-    public abstract KinematicSteeringOutput getSteering();
+    public abstract SteeringOutput GetSteering();
 
     public float newOrientation(float current, Vector3 velocity) 
     {

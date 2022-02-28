@@ -5,21 +5,34 @@ using UnityEngine;
 Information associated with character
 </summary>
 */
-public class Kinematic
+public class Kinematic : MonoBehaviour
 {
-   public Vector3 position;
-   public float orientation;
-
    // rotational and movement velocity
-   public Vector3 velocity;
-   public float rotation;
+   protected Vector3 velocity;
+   protected float rotation;
 
-   public void update(SteeringOutput steering, float deltatime) 
+   public virtual void UpdateSteering(SteeringOutput steering) 
    {
-        position += velocity * deltatime;
-        orientation += rotation * deltatime;
-
-        velocity += steering.linear * deltatime;
-        rotation += steering.angular * deltatime;
    }
+
+   public Vector3 GetPosition()
+   {
+      return transform.position;
+   }
+
+   public float GetRotation()
+   {
+      return transform.rotation.eulerAngles.y;
+   }
+
+   public Vector3 GetVelocity()
+   {
+      return velocity;
+   }
+
+   public float GetRotationVelocity()
+   {
+      return rotation;
+   }
+
 }

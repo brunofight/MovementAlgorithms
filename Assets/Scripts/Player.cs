@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : Kinematic
 {
     
     void Start()
@@ -10,13 +10,21 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-              
-        RaycastHit hit;        
 
-        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100000))
+        if (Input.GetMouseButton(1)) 
         {
-            transform.position = new Vector3(hit.point.x, transform.position.y, hit.point.z);
+            RaycastHit hit;        
+
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100000))
+            {
+                transform.position = new Vector3(hit.point.x, transform.position.y, hit.point.z);
+            }
         }
+
+        transform.position -= Input.GetAxis("Horizontal") * transform.right * Time.deltaTime * 50;
+        transform.position -= Input.GetAxis("Vertical") * transform.forward * Time.deltaTime * 50;
+
+        
 
         
     }
